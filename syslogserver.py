@@ -18,7 +18,7 @@ class SyslogUDPHandler(socketserver.BaseRequestHandler):
         # add data as document into index
 
         if data.startswith('<14>'):
-            alert_id = re.findall(r'(?<=externalId=)[0-9a-zA-Z\-]+(?=(\s))', data)
+            alert_id = re.findall(r'(?<=externalId=)([0-9a-zA-Z\-]+)(?=\smsg)', data)
         print('At {} recieved following message:\n{}\nALERT ID == {}'.format(time.time(), data, alert_id))
 
 if __name__ == "__main__":
