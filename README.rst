@@ -76,6 +76,7 @@ Credits
 -------
 
 https://github.com/choeffer/py3syslog
+
 https://gist.github.com/marcelom/4218010 
 
 References
