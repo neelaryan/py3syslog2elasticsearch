@@ -1,6 +1,6 @@
 import socketserver
 from datetime import datetime
-import time
+import time, re
 
 #https://docs.python.org/3/library/socketserver.html
 class SyslogUDPHandler(socketserver.BaseRequestHandler):
@@ -17,7 +17,9 @@ class SyslogUDPHandler(socketserver.BaseRequestHandler):
 
         # add data as document into index
 
-        print('At {} recieved following message:\n {}\n'.format(time.time(), data))
+        if data.startswith('<14>'):
+            alert_id = re.findall(r'(?<=(externalId=))[0-9a-zA-Z\-]+(?=(\s))', data)
+        print('At {} recieved following message:\n{}\nALERT ID == {}'.format(time.time(), data, alert_id))
 
 if __name__ == "__main__":
 
